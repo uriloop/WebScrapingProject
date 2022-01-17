@@ -25,6 +25,53 @@ public class ScrapingClass {
         this.file = file;
     }
 
+    public ScrapingClass() {
+
+    }
+
+    public String getHtmlColorFromName(String colorName){
+
+        System.out.println(System.getenv("PATH"));
+        System.out.println(System.getenv("HOME"));
+
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
+        FirefoxOptions options = new FirefoxOptions();
+        WebDriver driver = new FirefoxDriver(options);
+
+
+        // Declarem la url de la web on descarregarem les dades. Posem el driver a treballar a la web que posem
+
+        driver.get("https://www.colorhexa.com/");
+        WebElement searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
+        driver.getCurrentUrl();
+        searchInput.sendKeys(colorName/*translateToEnglish(colorName)   Aixó ha d'anar encapsulat. No enllaçar els mètodes !!!!*/);
+        WebElement searchButton= driver.findElement(new By.ByXPath("//*[@id=\"search-submit\"]"));
+        searchButton.click();
+        driver.getCurrentUrl();
+        searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
+        String colorHtml=searchInput.getAttribute("value");
+
+            return colorHtml;
+    }
+
+    /*private String translateToEnglish(String colorName) {
+
+        System.out.println(System.getenv("PATH"));
+        System.out.println(System.getenv("HOME"));
+
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
+        FirefoxOptions options = new FirefoxOptions();
+        WebDriver driver = new FirefoxDriver(options);
+
+
+        // Declarem la url de la web on descarregarem les dades. Posem el driver a treballar a la web que posem
+
+        driver.get("https://www.colorhexa.com/"); // aki posar la nova web.
+        WebElement searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
+
+    }*/
+
+
     public void getPimientosURL() {
 
         System.out.println(System.getenv("PATH"));

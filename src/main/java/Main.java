@@ -8,10 +8,14 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+
+
         File csvFile= new File("src/dades/pebrots.csv");
         File xmlFile= new File("src/dades/pebrots.xml");
         ScrapingClass sc= new ScrapingClass(csvFile);
 
+        System.out.println(sc.getHtmlColorFromName("Green"));
         // Agafem totes les url dels pebrots
         sc.getPimientosURL();
 
