@@ -15,7 +15,9 @@ public class Main {
         File xmlFile= new File("src/dades/pebrots.xml");
         ScrapingClass sc= new ScrapingClass(csvFile);
 
-        System.out.println(sc.getHtmlColorFromName("Green"));
+        /// Proves de color
+        String colorInEnglish=sc.translateToEnglish("Verde"); // se li passa el color a traduir i a convertir a html
+        System.out.println(sc.getHtmlColorFromName(colorInEnglish));
         // Agafem totes les url dels pebrots
         sc.getPimientosURL();
 

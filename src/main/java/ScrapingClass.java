@@ -2,9 +2,12 @@ import java.io.File;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -29,7 +32,7 @@ public class ScrapingClass {
 
     }
 
-    public String getHtmlColorFromName(String colorName){
+    public String getHtmlColorFromName(String colorName) {
 
         System.out.println(System.getenv("PATH"));
         System.out.println(System.getenv("HOME"));
@@ -45,19 +48,17 @@ public class ScrapingClass {
         WebElement searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
         driver.getCurrentUrl();
         searchInput.sendKeys(colorName/*translateToEnglish(colorName)   Aixó ha d'anar encapsulat. No enllaçar els mètodes !!!!*/);
-        WebElement searchButton= driver.findElement(new By.ByXPath("//*[@id=\"search-submit\"]"));
+        WebElement searchButton = driver.findElement(new By.ByXPath("//*[@id=\"search-submit\"]"));
         searchButton.click();
         driver.getCurrentUrl();
         searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
-        String colorHtml=searchInput.getAttribute("value");
-
-            return colorHtml;
+        String colorHtml = searchInput.getAttribute("value");
+        driver.close();
+        return colorHtml;
     }
 
-    /*private String translateToEnglish(String colorName) {
+    public String translateToEnglish(String word) {
 
-        System.out.println(System.getenv("PATH"));
-        System.out.println(System.getenv("HOME"));
 
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         FirefoxOptions options = new FirefoxOptions();
@@ -65,11 +66,35 @@ public class ScrapingClass {
 
 
         // Declarem la url de la web on descarregarem les dades. Posem el driver a treballar a la web que posem
+        String word2="";
 
-        driver.get("https://www.colorhexa.com/"); // aki posar la nova web.
-        WebElement searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
+        try {
 
-    }*/
+            driver.get("https://www.politraductor.com/traductor-espanol-ingles/"); // aki posar la nova web.
+
+//
+            WebElement textArea = driver.findElement(new By.ByXPath("//*[@id=\"texto\"]"));
+
+            textArea.sendKeys(word);
+            /*textArea.submit();*/
+
+
+            WebElement acceptButton = driver.findElement(new By.ByXPath("//*[@id=\"boton_traducir\"]"));
+            acceptButton.click();
+            WebDriverWait wdw= new WebDriverWait(driver,Duration.ofSeconds(20));
+/*
+            wdw.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"resultado-traduccion\"]//*")));
+*/
+            Thread.sleep(1000);
+            WebElement result= driver.findElement(new By.ByXPath("//*[@id=\"resultado-traduccion\"]"));
+            word2 = result.getText();
+            System.out.println(word);
+            System.out.println(word2);
+        } catch (Exception e) {
+        }
+        driver.close();
+        return word2;
+    }
 
 
     public void getPimientosURL() {
@@ -182,7 +207,7 @@ public class ScrapingClass {
 
             // Iniciem la classe csv
 
-            Csv csv= new Csv(file);
+            Csv csv = new Csv(file);
 
             // Li passem la informació a la classe encarregada d'escrriure el csv
             csv.newPimientoToCSV(nombre, description, origen, distanciaEntrePlantas, distanciaEntreSemillas, scoville, anchoPlanta, familia, colorFlor,

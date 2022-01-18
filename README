@@ -1,2 +1,4 @@
 Proyecto de clase Acceso a datos:
 
+El pproyecto consiste en hacer webScraping a allguna web con contenido y guardar los datos "crudos" en formato csv para
+luego pasarlo a xml.
