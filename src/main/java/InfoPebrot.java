@@ -4,7 +4,7 @@ public class InfoPebrot {
 
     private String[] origen;
 
-    Formating format= new Formating();
+    FormatingPebrots format= new FormatingPebrots();
     public InfoPebrot(String nombre, String description, String origen, String familia) {
 
         this.nombre= nombre;

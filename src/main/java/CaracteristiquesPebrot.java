@@ -1,12 +1,10 @@
-import java.sql.Time;
-
 public class CaracteristiquesPebrot {
 
     private String rendimiento,hexColor1, hexColor2;
     private int minScoville, maxScoville;
     private int anchoPlantaMax,anchoPlantaMin, alturaPlantaMax, alturaPlantaMin;
     private int diesMinCultiu,diesMaxCultiu;
-    Formating format=new Formating();
+    FormatingPebrots format=new FormatingPebrots();
     ScrapingClass sc= new ScrapingClass();
     private String color1;
     private String color2=null;

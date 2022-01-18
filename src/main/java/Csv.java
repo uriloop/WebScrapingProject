@@ -5,7 +5,7 @@ import java.util.List;
 public class Csv {
 
     private File file;
-
+    private File newFile;
 
     // un cop iniciem la classe haurem de fixar-nos si ja existeix el file i haurem de decidir si el sobreescribim. Com que aixó es per a mostrar-ho més tard en una web o semblant, sobreescriuria l'arxiu i ja mirariem més tard si ja està actualitzat, si hi ha algún de nou, etc...
     public Csv(File file) {
@@ -29,6 +29,7 @@ public class Csv {
 
     }
 
+    // Guarda un nou pebrot ja convertit a String a l'arxiu csv
     public void writePimiento(String str) {
 
         BufferedWriter bw;
@@ -43,6 +44,7 @@ public class Csv {
 
     }
 
+    // verifica que el numero estigui dins del rang demanat
     private boolean numForaDeRang(int num) {
 
         if (num < 0) {
@@ -59,6 +61,7 @@ public class Csv {
     }
 
 
+    // retorna el numero de linies guardades a l'arxiu csv
     public int getNumGuardats() {
         int num=0;
         try {
@@ -82,6 +85,7 @@ public class Csv {
     }
 
 
+    // retorna el contingut d'un numero concret de linia de l'arxiu csv
     public String getLine(int numLinia){
 
         String line = "";
@@ -105,20 +109,9 @@ public class Csv {
         return line;
     }
 
+    // imprimeix per terminal una linia del csv
     public void csvLineToScreen(String line) {
-
-        String[] separated = line.split(",");
-        for (int i = 0; i < separated.length; i++) {
-            if (separated[i].length() > 50) {
-                int j = 0;
-                for (char c :
-                        separated[i].toCharArray()) {
-                    if (j%50==0) System.out.println();
-                    j++;
-                }
-            }
-            System.out.printf("%20s", separated[i]);
-        }
+        System.out.println(line);
     }
 
 

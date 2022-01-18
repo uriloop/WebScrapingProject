@@ -6,7 +6,7 @@ public class CultiuPebrot {
     private int tiempoMinCosechaMax, tiempoMinCosechaMin, distanciaEntreSemillas;
     private String luz;
 
-    Formating format= new Formating();
+    FormatingPebrots format= new FormatingPebrots();
 
     public CultiuPebrot(String profSemilla,String distanciaEntrePlantas, String distanciaEntreSemillas,  String tempCrecimiento, String luz, String tempGerminacion) {
 

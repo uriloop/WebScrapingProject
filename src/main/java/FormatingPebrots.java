@@ -1,4 +1,4 @@
-public class Formating {
+public class FormatingPebrots {
 
 
     public int[] getIntsFromStringWithNumberAndText(String alturaPlanta) {

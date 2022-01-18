@@ -16,7 +16,7 @@ public class Main {
         ScrapingClass sc= new ScrapingClass(csvFile);
 
         // probes formateig de dades
-        Formating format= new Formating();
+        FormatingPebrots format= new FormatingPebrots();
         System.out.println("----------------------------getFloatFrom... '0,5 cm' -------------------------------");
         float profLlavor= format.getFloatFromStringWithText("0,5 cm");
         System.out.println("profLlavor= "+profLlavor);
@@ -44,7 +44,6 @@ public class Main {
         System.out.println("----------------------------getColorsInHex  'Verde' -------------------------------");
         /// Proves de color  es pot posar un metode dintre de laltre? perque falla? SOLUCIONAT
         System.out.println("hex -> "+sc.getHtmlColorFromName(sc.translateToEnglish("Verde")));
-
 
 
 
