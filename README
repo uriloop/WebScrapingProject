@@ -2,3 +2,11 @@ Proyecto de clase Acceso a datos:
 
 El pproyecto consiste en hacer webScraping a allguna web con contenido y guardar los datos "crudos" en formato csv para
 luego pasarlo a xml.
+
+
+FALTA:
+
+- mètodes Formating a mitges o a zero.
+- solucionar l'entrada de camps amb valors dobles tipo "100 - 150" o per l'estil. Que fer si a vegades és únic i a vegades doble?
+- Acabar de trobar dades a formatejar
+- XML començar a pensar-hi
