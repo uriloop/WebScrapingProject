@@ -1,6 +1,8 @@
 public class InfoPebrot {
 
-    private String nombre, descripcion,origen,familia;
+    private String nombre, descripcion,familia;
+
+    private String[] origen;
 
     Formating format= new Formating();
     public InfoPebrot(String nombre, String description, String origen, String familia) {
@@ -8,9 +10,9 @@ public class InfoPebrot {
         this.nombre= nombre;
         this.descripcion=description;
         this.familia=format.familyFilter(familia);
-        this.origen= origen;
+        this.origen= format.getValuesFromOrigen(origen);
 
-
+        // constructor revisat
 
     }
 }
