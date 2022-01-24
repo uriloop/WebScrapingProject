@@ -7,13 +7,13 @@ public class Csv {
     private File file;
     private File newFile;
 
+    
+
     // un cop iniciem la classe haurem de fixar-nos si ja existeix el file i haurem de decidir si el sobreescribim. Com que aixó es per a mostrar-ho més tard en una web o semblant, sobreescriuria l'arxiu i ja mirariem més tard si ja està actualitzat, si hi ha algún de nou, etc...
     public Csv(File file) {
         this.file = file;
-        String header = "nombre,description,origen,distanciaEntrePlantas,distanciaEntreSemillas,scoville,anchoPlanta,familia,colorFlor,tempCrecimiento,luz,alturaPlanta,rendimiento,tiempoMinimoCosecha,profSemilla,tempGerminacion,img\n";
-        file.delete();
-
-        writePimiento(header);
+        String header = "nombre,description,origen,distanciaEntrePlantas,distanciaEntreSemillas,scoville,anchoPlanta,familia,colorFlor,tempCrecimiento,luz,alturaPlanta,rendimiento,tiempoMinimoCosecha,profSemilla,tempGerminacion,img";
+        if (!file.exists()) writePimiento(header);
 
     }
 
@@ -22,7 +22,6 @@ public class Csv {
 
         String str = nombre + "," + description + "," + origen + "," + distanciaEntrePlantas + "," + distanciaEntreSemillas + "," + scoville + "," + anchoPlanta + "," + familia + "," + colorFlor + "," +
                 tempCrecimiento + "," + luz + "," + alturaPlanta + "," + rendimiento + "," + tiempoMinimoCosecha + "," + profSemilla + "," + tempGerminacion + "," + img;
-
 
         writePimiento(str);
 
@@ -63,7 +62,7 @@ public class Csv {
 
     // retorna el numero de linies guardades a l'arxiu csv
     public int getNumGuardats() {
-        int num=0;
+        int num = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = "";
@@ -86,7 +85,7 @@ public class Csv {
 
 
     // retorna el contingut d'un numero concret de linia de l'arxiu csv
-    public String getLine(int numLinia){
+    public String getLine(int numLinia) {
 
         String line = "";
         if (!numForaDeRang(numLinia)) {
