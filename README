@@ -1,27 +1,18 @@
-Proyecto de clase Acceso a datos:
+Projecte WebScraping:
 
-El proyecto consiste en hacer webScraping a alguna web y guardar los datos "crudos" en formato csv para
-luego pasarlo a xml.
-Entre medias se crearà un modelo de datos i se trataran todos los campos para darles el formato correspondiente.
-
---- WebScraping pebrot part 1    (Un Thread a part)
-
-En primer lloc es descarreguen de la pagina inicial de pebrots tots els noms dels pebrots juntament amb la URL. Primera crida al driver
-En segon lloc es comprova cadascun dels noms amb els de l'arxiu csv. Si no existeix es posa a la cua de descarregues(Com es fa una cua?) Segona crida al driver. Tota la cua en un driver
-
---- Convertir el csv a Classes  part 2       (Thread 2)
-
-Donar-li format a les dades. Tenim coses com: ("30 - 40 centimetros") i volem { int minValue=30; int maxValue=40;  String valueUnits=}
+Explicació:
+El projecte consisteix a fer web scraping amb selenium web driver a una web que té una enciclopèdia de pebrots picants. La informació la gurdem en format csv amb la llibreria openCSV.
+D'altre banda un cop acabada la descarrega de dades de la web llegim el csv per a crear la nostra propia enciclopedia de pebrots convertint-los en objectes java.
+Per fer-ho abans acabarem de tractar lñes dades del csv ja que no ho hem fet abans i és necessari per a crear els pebrots.
+Tenim coses com: ("30 - 40 centimetros") i volem { int minValue=30; int maxValue=40;  String valueUnits="cm"}
 Quan comencem a formatejar les dades també entrem a dos webs tant per traduir com per agafar el codi de color en format Hex
+Per últim passem aquestes classes a xml amb l'ajuda de JAXB.
+
+_____________________________________________________________________________________________________
+
+Altres:
 
 
---- Convertir Les classes a xml part 3
-
---- Menu:
-
-opcions{ borrar tablas i info base de datos, crear nuevas tablas base de datos  ,  insertar pimientos  ,  funcion update pimiento (modificar cualquier valor de los pimientos)  ,
- listar pimientos  ,  listar pimientos por (lugar, altura, picante....) ,
- }
 
 
 

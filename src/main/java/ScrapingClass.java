@@ -115,7 +115,7 @@ public class ScrapingClass {
 
         List<WebElement> wesPimientos = driver.findElements(new By.ByXPath("//*[contains(@class, 'tw-column')]//li/a"));
 
-        // Guardem cadascún dels href com un string a una llista i imprimim un asterisc per a cada pebrot mostrant al final el numero total de pebrots guardats
+        // Guardem cadascún dels href de cada <a> com un string a una llista i imprimim un asterisc per a cada pebrot mostrant al final el numero total de pebrots guardats
 
         int num = 0;
         pimientos = new String[wesPimientos.size()];
@@ -209,14 +209,15 @@ public class ScrapingClass {
 
             Csv csv = new Csv(file);
 
-            // Li passem la informació a la classe encarregada d'escrriure el csv
+            // Li passem la informació a la classe encarregada d'escrriure el csv juntament amb tots els paràmetres
             csv.newPimientoToCSV(nombre, description, origen, distanciaEntrePlantas, distanciaEntreSemillas, scoville, anchoPlanta, familia, colorFlor,
                     tempCrecimiento, luz, alturaPlanta, rendimiento, tiempoMinimoCosecha, profSemilla, tempGerminacion, img);
 
-
+            // Avisem per terminal de quin pebrot hem descarregat  i la url d'on s'han descarregat les dades
             System.out.println("-----------------");
             System.out.println("-----------------> variables guardadas de " + nombre + "  --  " + driver.getCurrentUrl());
             System.out.println("-----------------");
+
 
 
         }

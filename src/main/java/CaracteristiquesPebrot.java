@@ -1,13 +1,13 @@
 public class CaracteristiquesPebrot {
 
+
     private String rendimiento,hexColor1, hexColor2;
     private int minScoville, maxScoville;
     private int anchoPlantaMax,anchoPlantaMin, alturaPlantaMax, alturaPlantaMin;
     private int diesMinCultiu,diesMaxCultiu;
     FormatingPebrots format=new FormatingPebrots();
     ScrapingClass sc= new ScrapingClass();
-    private String color1;
-    private String color2=null;
+
     public CaracteristiquesPebrot(String scoville, String anchoPlanta, String colorFlor, String alturaPlanta, String rendimiento, String tiempoMinimoCosecha) {
 
         int[] altura=format.getIntsFromStringWithNumberAndText(alturaPlanta);
@@ -24,8 +24,10 @@ public class CaracteristiquesPebrot {
         this.diesMaxCultiu= harvest[1];
         this.diesMinCultiu= harvest[0];
         String[] colors= format.setColorsOrColor(colorFlor);
-        this.color1=colors[0];
-        this.color2=colors[1];
+        String color1;
+        String color2=null;
+        color1=colors[0];
+        color2=colors[1];
         this.hexColor1= sc.getHtmlColorFromName(sc.translateToEnglish(color1));
         if(!color2.equals("NULL")) this.hexColor2= sc.getHtmlColorFromName(sc.translateToEnglish(color2));
 

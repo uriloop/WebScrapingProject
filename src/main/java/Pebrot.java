@@ -2,7 +2,7 @@ public class Pebrot {
 
 
     private String nombre,img;
-    private String id;
+    private long id;
 
     private CultiuPebrot cultiuPebrot;
     private CaracteristiquesPebrot caracteristiquesPebrot;
@@ -17,4 +17,10 @@ public class Pebrot {
 
     }
 
+    public Pebrot(String[] pebrot) {
+        this.img = pebrot[pebrot.length-1];
+        cultiuPebrot=new CultiuPebrot(pebrot[14],pebrot[3],pebrot[4],pebrot[9],pebrot[10],pebrot[pebrot.length-2]);
+        caracteristiquesPebrot= new CaracteristiquesPebrot(pebrot[5],pebrot[6],pebrot[8],pebrot[11], pebrot[12],pebrot[13]);
+        infoPebrot= new InfoPebrot(pebrot[0],pebrot[1],pebrot[2],pebrot[7]);
+    }
 }

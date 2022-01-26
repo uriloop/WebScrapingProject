@@ -150,7 +150,7 @@ public class FormatingPebrots {
             // si el caracter es un numero el guardem a la variable de retorn
             if (Character.isDigit(distanciaEntreSemillas.charAt(i))) {
                 num1 += Character.toString(distanciaEntreSemillas.charAt(i));
-            } else break;
+            } /*else break;*/
         }
         return Integer.parseInt(num1);
     }   // fet
@@ -160,7 +160,7 @@ public class FormatingPebrots {
         return origen.split("/");
     }   // fet
 
-    public float getFloatFromStringWithText(String profSemilla) {
+    public float getFloatFromStringWithText(String valor) {
 
         // s'ha de revisar !!!!    quan agafem els decimals s'haurà de comprovar quants decimals tenim i dividir-ho per :  1 digit= 10, 2 digits= 100 .....
         float result;
@@ -168,9 +168,9 @@ public class FormatingPebrots {
         String num2 = "";
         int contadorDecimals=0;
         boolean decimals = false;
-        for (int i = 0; i < profSemilla.toCharArray().length; i++) {
+        for (int i = 0; i < valor.toCharArray().length; i++) {
             // si el caracter es un numero el guardem a la variable de retorn
-            if (Character.isDigit(profSemilla.charAt(i)) || profSemilla.charAt(i) == ',') {
+            /*if (Character.isDigit(profSemilla.charAt(i)) || profSemilla.charAt(i) == ',') {
                 if (!decimals) {
                     if (profSemilla.charAt(i) != ',') num1 += Character.toString(profSemilla.charAt(i));
                     else {
@@ -181,6 +181,13 @@ public class FormatingPebrots {
                     contadorDecimals++;
                 }
 
+            }*/
+            if (valor.charAt(i)==',')decimals=true;
+            if (!decimals && Character.isDigit(valor.charAt(i)) ){
+                num1+=valor.charAt(i);
+            }else if (Character.isDigit(valor.charAt(i))){
+                num2+=valor.charAt(i);
+                contadorDecimals++;
             }
         }
         int divisor=1;

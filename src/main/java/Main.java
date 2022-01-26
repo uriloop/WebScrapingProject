@@ -1,4 +1,6 @@
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -9,11 +11,12 @@ public class Main {
     public static void main(String[] args) {
 
 
-
-
-        File csvFile= new File("src/dades/pebrots.csv");
+        File csvFile= new File("src/dades/pebrotsOpen.csv");
         File xmlFile= new File("src/dades/pebrots.xml");
         ScrapingClass sc= new ScrapingClass(csvFile);
+        List<Pebrot> pebrots= new ArrayList<>();
+        Csv csv= new Csv(csvFile);
+
 
        /* // probes formateig de dades
         FormatingPebrots format= new FormatingPebrots();
@@ -46,18 +49,41 @@ public class Main {
         System.out.println("hex -> "+sc.getHtmlColorFromName(sc.translateToEnglish("Verde")));*/
 
 
-
         /// Aki el codi original sense proves
 
 
         System.out.println("Start ------------------");
-        // Agafem totes les url dels pebrots
+
+        /*// Agafem totes les urls de posts de pebrots
         sc.getPimientosURL();
 
-        // Agafem tota la info de cada pebrot
+        // Agafem tota la info de cada post de pebrot
         sc.getPimientosInfo();
 
 
+        // imprimim tots els noms de pebrots així com la quantitat
+
+
+        System.out.println("Total pebrots descarregats: "+csv.getNumGuardats());
+
+        for (int i = 0; i < csv.getNumGuardats(); i++) {
+            csv.csvLineToScreen(csv.getLine(i));
+        }
+*/
+        // passem els pebrots del csv a objectes de la classe pebrot dins de la classe biblioteca de pebrots
+
+
+            // creem la llista de pebrots amb els new Pebrot
+        for (int i = 0; i < csv.getNumGuardats(); i++) {
+            pebrots.add(new Pebrot(csv.getLine(i)));
+
+        }
+
+            // construim la biblioteca de pebrts amb la llista de pebrots
+        BibliotecaPebrots enciclopedia= new BibliotecaPebrots(pebrots);
+
+
+        System.out.println("Total pebrots: "+enciclopedia.getPebrotsList().size());
 
 
     }
