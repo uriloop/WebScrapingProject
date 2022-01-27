@@ -1,5 +1,6 @@
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.*;
@@ -11,15 +12,12 @@ public class Csv {
     private File file;
     private File newFile;
 
-    
 
     // un cop iniciem la classe haurem de fixar-nos si ja existeix el file i haurem de decidir si el sobreescribim. Com que aixó es per a mostrar-ho més tard en una web o semblant, sobreescriuria l'arxiu i ja mirariem més tard si ja està actualitzat, si hi ha algún de nou, etc...
     public Csv(File file) {
         this.file = file;
-        String[] header = {"nombre","description","origen","distanciaEntrePlantas","distanciaEntreSemillas","scoville","anchoPlanta","familia","colorFlor","tempCrecimiento","luz","alturaPlanta","rendimiento","tiempoMinimoCosecha","profSemilla","tempGerminacion","img"};
+        String[] header = {"nombre", "description", "origen", "distanciaEntrePlantas", "distanciaEntreSemillas", "scoville", "anchoPlanta", "familia", "colorFlor", "tempCrecimiento", "luz", "alturaPlanta", "rendimiento", "tiempoMinimoCosecha", "profSemilla", "tempGerminacion", "img"};
         if (!file.exists()) writePimientoOpen(header);
-
-
 
     }
 
@@ -27,8 +25,8 @@ public class Csv {
 
     public void newPimientoToCSV(String nombre, String description, String origen, String distanciaEntrePlantas, String distanciaEntreSemillas, String scoville, String anchoPlanta, String familia, String colorFlor, String tempCrecimiento, String luz, String alturaPlanta, String rendimiento, String tiempoMinimoCosecha, String profSemilla, String tempGerminacion, String img) {
 
-        String[] arrayLinia= {nombre, description,origen, distanciaEntrePlantas , distanciaEntreSemillas, scoville , anchoPlanta , familia ,colorFlor,
-                tempCrecimiento , luz , alturaPlanta , rendimiento , tiempoMinimoCosecha ,profSemilla , tempGerminacion, img};
+        String[] arrayLinia = {nombre, description, origen, distanciaEntrePlantas, distanciaEntreSemillas, scoville, anchoPlanta, familia, colorFlor,
+                tempCrecimiento, luz, alturaPlanta, rendimiento, tiempoMinimoCosecha, profSemilla, tempGerminacion, img};
 
                /* String str = nombre + "," + description + "," + origen + "," + distanciaEntrePlantas + "," + distanciaEntreSemillas + "," + scoville + "," + anchoPlanta + "," + familia + "," + colorFlor + "," +
                 tempCrecimiento + "," + luz + "," + alturaPlanta + "," + rendimiento + "," + tiempoMinimoCosecha + "," + profSemilla + "," + tempGerminacion + "," + img;*/
@@ -39,12 +37,11 @@ public class Csv {
     }
 
 
-
-   // Guarda un nou pebrot ja convertit a String[] a l'arxiu csv
-    public void writePimientoOpen(String[] linia){
+    // Guarda un nou pebrot ja convertit a String[] a l'arxiu csv
+    public void writePimientoOpen(String[] linia) {
         CSVWriter writer = null;
         try {
-            writer = new CSVWriter(new FileWriter("src/dades/pebrotsOpen.csv",true));
+            writer = new CSVWriter(new FileWriter("src/dades/pebrotsOpen.csv", true));
             writer.writeNext(linia);
             writer.close();
         } catch (IOException e) {
@@ -69,8 +66,89 @@ public class Csv {
 
     }
 
+    public int getNumGuardats() {
+
+        // retorna el numero de linies guardades a l'arxiu csv
+
+        int num = 0;
+        try {
+            CSVReader csvR = new CSVReader(new FileReader(file));
+            String[] line;
+            /*num=csvR.getMultilineLimit();   // controlar que aixó es faci bé. = contar les linies de l'arxiu  NO VA   */
+            List<String[]> hola = csvR.readAll();
+            num = hola.size();
 
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CsvException e) {
+            e.printStackTrace();
+        }
+
+
+        return num;
+
+    }
+
+
+    public String[] getLine(int numLinia) {
+
+        String[] line = new String[18];
+        if (!numForaDeRang(numLinia)) {
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                CSVReader csvReader = new CSVReader(new FileReader(file));
+                try {
+                    for (int i = 0; i <= numLinia; i++) {
+                        /*line = br.readLine().split(",");*/
+                        line = csvReader.readNext();
+                    }
+                    /*br.close();*/
+                    csvReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (CsvValidationException e) {
+                    e.printStackTrace();
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return line;
+    }
+
+    // imprimeix per terminal una linia del csv
+    public void csvLineToScreen(String[] line) {
+
+        for (String parametre :
+                line) {
+
+            System.out.print(parametre + ", ");
+        }
+        System.out.println("----------------------------------------------");
+    }
+
+ /* Deprecated XD
+
+   public void writePimiento(String str) {
+
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(file, true));
+            bw.write(str);
+            bw.newLine();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }*/
+
+
+/*           DEPRECATED
 
     // retorna el numero de linies guardades a l'arxiu csv
     public int getNumGuardats() {
@@ -94,9 +172,10 @@ public class Csv {
         }
         return num;
     }
-
-        /*DEPRECATED
 */
+
+    /*DEPRECATED
+     */
  /*   // retorna el contingut d'un numero concret de linia de l'arxiu csv
     public String getLine(int numLinia) {
 
@@ -119,60 +198,6 @@ public class Csv {
         }
 
         return line;
-    }*/
-
-    public String[] getLine(int numLinia) {
-
-        String[] line =new String[18];
-        if (!numForaDeRang(numLinia)) {
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                CSVReader csvReader= new CSVReader(new FileReader(file));
-                try {
-                    for (int i = 0; i <= numLinia; i++) {
-                        /*line = br.readLine().split(",");*/
-                        line= csvReader.readNext();
-                    }
-                    /*br.close();*/
-                    csvReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (CsvValidationException e) {
-                    e.printStackTrace();
-                }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return line;
-    }
-
-    // imprimeix per terminal una linia del csv
-    public void csvLineToScreen(String[] line) {
-
-        for (String parametre:
-             line) {
-
-            System.out.print(parametre+", ");
-        }
-        System.out.println("----------------------------------------------");
-    }
-
- /* Deprecated XD
-
-   public void writePimiento(String str) {
-
-        BufferedWriter bw;
-        try {
-            bw = new BufferedWriter(new FileWriter(file, true));
-            bw.write(str);
-            bw.newLine();
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }*/
 
 }

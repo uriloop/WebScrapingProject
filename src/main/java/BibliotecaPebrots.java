@@ -2,15 +2,16 @@ import java.util.List;
 
 public class BibliotecaPebrots {
 
+    public BibliotecaPebrots(List<Pebrot> pebrotsList){
+        this.pebrotsList = pebrotsList;
+    }
+
     public List<Pebrot> getPebrotsList() {
         return pebrotsList;
     }
 
     private List<Pebrot> pebrotsList;
 
-    public BibliotecaPebrots(List<Pebrot> pebrotsList) {
-        this.pebrotsList = pebrotsList;
-    }
 
     @Override
     public String toString() {
@@ -18,6 +19,8 @@ public class BibliotecaPebrots {
                 "pebrotsList=" + pebrotsList +
                 '}';
     }
+
+
 
 
 }

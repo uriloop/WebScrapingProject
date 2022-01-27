@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class FormatingPebrots {
 
 
@@ -10,9 +13,9 @@ public class FormatingPebrots {
         for (int i = 0; i < alturaPlanta.toCharArray().length; i++) {
             // si el caracter es un numero el guardem a la variable de retorn
             if (Character.isDigit(alturaPlanta.charAt(i))) {
-                if (!primerSegonNum) num1 += Character.toString(alturaPlanta.charAt(i));
+                if (!primerSegonNum) num1 += alturaPlanta.charAt(i);
                 else {
-                    num2 += Character.toString(alturaPlanta.charAt(i));
+                    num2 += alturaPlanta.charAt(i);
                     hiHaSegon = true;
                 }
             } else if (!Character.isDigit(alturaPlanta.charAt(i))) {
@@ -29,27 +32,34 @@ public class FormatingPebrots {
     public int[] setMaxAndMinScoville(String scoville) {
         String num1 = "";
         String num2 = "";
-        int scovilleNums[] = new int[2];
-        boolean primerSegonNum = false;
+        List<String> scovilleList = new ArrayList<>();
+
         boolean hiHaSegon = false;
         for (int i = 0; i < scoville.toCharArray().length; i++) {
-            // si el caracter es un numero el guardem a la variable de retorn
-            if (Character.isDigit(scoville.charAt(i)) || scoville.charAt(i) == '.') {
-                if (!primerSegonNum) {
-                    if (scoville.charAt(i) != '.') num1 += Character.toString(scoville.charAt(i));
-                } else {
-                    if (scoville.charAt(i) != '.') num2 += Character.toString(scoville.charAt(i));
-                    hiHaSegon = true;
+            if (scoville.charAt(i) == '~' || scoville.charAt(i) == 'y') {
+                hiHaSegon = true;
+            } else if (Character.isDigit(scoville.charAt(i))) {
+                if (!hiHaSegon) num1 += scoville.charAt(i);
+                else {
+                    num2 += scoville.charAt(i);
                 }
-            } else if (!Character.isDigit(scoville.charAt(i))) {
-                primerSegonNum = true;
             }
         }
-        if (!hiHaSegon) num2 = "-1";
-        scovilleNums[0] = Integer.parseInt(num2);
-        scovilleNums[1] = Integer.parseInt(num1);
 
-        return scovilleNums;
+        if (hiHaSegon) {
+
+            int[] scovilleNums = new int[2];
+            scovilleNums[0] = Integer.parseInt(num1);
+            scovilleNums[1] = Integer.parseInt(num2);
+            return scovilleNums;
+        } else {
+            int[] scovilleNums = new int[1];
+            scovilleNums[0] = Integer.parseInt(num1);
+
+            return scovilleNums;
+        }
+
+        // JA TIRA
 
 
     }   // fet
@@ -137,7 +147,6 @@ public class FormatingPebrots {
         if (!hiHaSegon) num2 = "-1";
         ample[0] = Integer.parseInt(num2);
         ample[1] = Integer.parseInt(num1);
-
         return ample;
     }   // fet
 
@@ -148,8 +157,9 @@ public class FormatingPebrots {
 
         for (int i = 0; i < distanciaEntreSemillas.toCharArray().length; i++) {
             // si el caracter es un numero el guardem a la variable de retorn
+
             if (Character.isDigit(distanciaEntreSemillas.charAt(i))) {
-                num1 += Character.toString(distanciaEntreSemillas.charAt(i));
+                num1 += (distanciaEntreSemillas.charAt(i));
             } /*else break;*/
         }
         return Integer.parseInt(num1);
@@ -166,7 +176,7 @@ public class FormatingPebrots {
         float result;
         String num1 = "";
         String num2 = "";
-        int contadorDecimals=0;
+        int contadorDecimals = 0;
         boolean decimals = false;
         for (int i = 0; i < valor.toCharArray().length; i++) {
             // si el caracter es un numero el guardem a la variable de retorn
@@ -182,22 +192,21 @@ public class FormatingPebrots {
                 }
 
             }*/
-            if (valor.charAt(i)==',')decimals=true;
-            if (!decimals && Character.isDigit(valor.charAt(i)) ){
-                num1+=valor.charAt(i);
-            }else if (Character.isDigit(valor.charAt(i))){
-                num2+=valor.charAt(i);
+            if (valor.charAt(i) == ',') decimals = true;
+            if (!decimals && Character.isDigit(valor.charAt(i))) {
+                num1 += valor.charAt(i);
+            } else if (Character.isDigit(valor.charAt(i))) {
+                num2 += valor.charAt(i);
                 contadorDecimals++;
             }
         }
-        int divisor=1;
+        int divisor = 1;
         for (int i = 0; i < contadorDecimals; i++) {
-            divisor*=10;
+            divisor *= 10;
         }
         if (decimals) {
-            return Float.parseFloat(num1)+ (Float.parseFloat(num2)/divisor);
-        }
-        else return  Float.parseFloat(num1);
+            return Float.parseFloat(num1) + (Float.parseFloat(num2) / divisor);
+        } else return Float.parseFloat(num1);
 
 
     }

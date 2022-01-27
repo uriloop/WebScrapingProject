@@ -9,6 +9,7 @@ public class Pebrot {
     private InfoPebrot infoPebrot;
 
     public Pebrot(String nombre, String description, String origen, String distanciaEntrePlantas, String distanciaEntreSemillas, String scoville, String anchoPlanta, String familia, String colorFlor, String tempCrecimiento, String luz, String alturaPlanta, String rendimiento, String tiempoMinimoCosecha, String profSemilla, String tempGerminacion, String img) {
+        this.nombre=nombre;
 
         this.img = img;
         cultiuPebrot=new CultiuPebrot(profSemilla,distanciaEntrePlantas,distanciaEntreSemillas,tempCrecimiento,luz,tempGerminacion);
@@ -18,9 +19,32 @@ public class Pebrot {
     }
 
     public Pebrot(String[] pebrot) {
+        this.nombre=pebrot[0];
         this.img = pebrot[pebrot.length-1];
         cultiuPebrot=new CultiuPebrot(pebrot[14],pebrot[3],pebrot[4],pebrot[9],pebrot[10],pebrot[pebrot.length-2]);
         caracteristiquesPebrot= new CaracteristiquesPebrot(pebrot[5],pebrot[6],pebrot[8],pebrot[11], pebrot[12],pebrot[13]);
         infoPebrot= new InfoPebrot(pebrot[0],pebrot[1],pebrot[2],pebrot[7]);
+    }
+
+    public InfoPebrot getInfoPebrot() {
+        return infoPebrot;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+
+
+    public CultiuPebrot getCultiuPebrot() {
+        return cultiuPebrot;
+    }
+
+    public CaracteristiquesPebrot getCaracteristiquesPebrot() {
+        return caracteristiquesPebrot;
     }
 }
