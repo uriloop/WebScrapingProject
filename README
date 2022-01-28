@@ -18,7 +18,6 @@ Altres:
 
 FALTA:
 
-- mètodes FormatingPebrots , tipus set estan malament o els que reben doble dada. Revisar-los bé
-- solucionar l'entrada de camps amb valors dobles tipo "100 - 150" o per l'estil. Que fer si a vegades és únic i a vegades doble?
-- Acabar de trobar dades a formatejar
+- solucionar l'entrada de camps inexistents com altura planta que no sempre apareix https://elholandespicante.com/plantas/chiles-y-ajies/aji-angelo/
+
 - XML començar a pensar-hi

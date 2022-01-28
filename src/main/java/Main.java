@@ -1,7 +1,12 @@
+import enciclopedia.BibliotecaPebrots;
+import enciclopedia.Pebrot;
+import file.acces.Csv;
+import file.acces.MyJAXB;
+import web.scraping.ScrapingClass;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
@@ -17,39 +22,55 @@ public class Main {
         ScrapingClass sc = new ScrapingClass(csvFile);
         List<Pebrot> pebrots = new ArrayList<>();
         Csv csv = new Csv(csvFile);
-
-        /// Aki el codi original sense proves
+        MyJAXB jax;
+        /// Web scraping
 
         System.out.println("Start web scraping------------------");
 
         // Agafem totes les urls de posts de pebrots
-        sc.getPimientosURL();
-
+        //sc.getPimientosURL();
         // Agafem tota la info de cada post de pebrot
-        sc.getPimientosInfo();
+        //sc.getPimientosInfo();
 
+        // agafem un pebrot en concret passant-li
+        //sc.getPimientosInfo("https://elholandespicante.com/plantas/chiles-y-ajies/aji-angelo/");
+
+        // .... final web scraping o no..
 
         // imprimim  la quantitat de pebrots al csv
-        System.out.println("Total pebrots descarregats: " + (csv.getNumGuardats() - 1));
+        System.out.println("Total pebrots descarregats al csv: " + (csv.getNumGuardats() - 1));
 
 
         // passem els pebrots del csv a objectes de la classe pebrot dins de la classe biblioteca de pebrots
-        // creem la llista de pebrots amb els new Pebrot
+        // creem la llista de pebrots amb els new enciclopedia.Pebrot
+        // tornem a  per extreure el color en hex
         for (int i = 1; i < csv.getNumGuardats(); i++) {
             pebrots.add(new Pebrot(csv.getLine(i)));
-
         }
-        // construim la biblioteca de pebrts amb la llista de pebrots
+
+        // construim la biblioteca de pebrots amb la llista de pebrots que hem creat
         BibliotecaPebrots enciclopedia = new BibliotecaPebrots(pebrots);
-        System.out.println("Total pebrots: " + enciclopedia.getPebrotsList().size());
-        System.out.println("Escriu una quantitat de scoville(picor) 0=tots / ha de ser un enter:");
-        Scanner scan = new Scanner(System.in);
-        try {
-            int minScoville = scan.nextInt();
-            for (Pebrot pebrot :
-                    enciclopedia.getPebrotsList()) {
-                if (pebrot.getCaracteristiquesPebrot().getMinScoville() > minScoville) {
-                    System.out.println("nom: " + pebrot.getNombre());
+        System.out.println("Total pebrots a la biblioteca: " + enciclopedia.getPebrotsList().size());
+
+        System.out.println("All \"Biblioteca\" To String = \n"+enciclopedia.toString());
+
+
+        /// Transformar les classes a xml amb JAXB amb la classe file.acces.MyJAXB
+        jax=new MyJAXB();
+        jax.generateXML(enciclopedia,xmlFile);
+        jax.printFromXML(enciclopedia,xmlFile);
+        enciclopedia.removeAllData();
+        jax.generateObjectsFromXML(enciclopedia,xmlFile);
+    }
+
+
+
+
+
+
+
+    /*
+    * System.out.println("nom: " + pebrot.getNombre());
                     System.out.println("img: " + pebrot.getImg());
                     System.out.println("info/descripció: " + pebrot.getInfoPebrot().getDescripcion());
                     System.out.println("info/família: " + pebrot.getInfoPebrot().getFamilia());
@@ -72,10 +93,22 @@ public class Main {
                     System.out.println("característiques/scoville MIN: " + pebrot.getCaracteristiquesPebrot().getMinScoville());
                     System.out.println("característiques/scoville MAX: " + pebrot.getCaracteristiquesPebrot().getMaxScoville());
                     System.out.println("característiques/_HEX_color/s: " + pebrot.getCaracteristiquesPebrot().getHexColors());
+                    *
+                    *
+                    *
+                    *
+                    * System.out.println("Escriu una quantitat de scoville(picor) 0=tots / ha de ser un enter:");
+        Scanner scan = new Scanner(System.in);
+        try {
+            int minScoville = scan.nextInt();
+            for (enciclopedia.Pebrot pebrot :
+                    enciclopedia.getPebrotsList()) {
+                if (pebrot.getCaracteristiquesPebrot().getMinScoville() < minScoville) {
+                    pebrot.toString();
                 }
             }
         } catch (Exception e) {
             System.out.println("No és un enter!");
         }
-    }
+    * */
 }
