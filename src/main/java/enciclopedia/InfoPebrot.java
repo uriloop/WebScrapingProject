@@ -65,10 +65,10 @@ public class InfoPebrot {
     /**getter origen
      * @return String amb l'origen o origens
      */
-    public String getOrigen() {
+    public String[] getOrigen() {
         String data= origen[0];
         if (origen.length==2) data+=", "+origen[1];
-        return data;
+        return origen;
     }
 
     /**el to string sobreescrit

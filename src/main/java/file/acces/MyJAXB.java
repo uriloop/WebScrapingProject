@@ -40,7 +40,7 @@ public class MyJAXB {
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            jaxbMarshaller.marshal(biblioteca, file);
+            jaxbMarshaller.marshal(biblioteca, new File("src/dades/pebrotsXML.xml"));
             jaxbMarshaller.marshal(biblioteca, System.out);
 
         } catch (JAXBException e) {

@@ -1,5 +1,6 @@
 import enciclopedia.BibliotecaPebrots;
 import enciclopedia.Pebrot;
+import file.acces.CreateXML;
 import file.acces.Csv;
 import file.acces.MyJAXB;
 import web.scraping.ScrapingClass;
@@ -74,15 +75,19 @@ public class Main {
         //System.out.println("All \"Biblioteca\" to String = \n" + enciclopedia);
 
 
+        CreateXML createXML= new CreateXML();
+        createXML.write(enciclopedia,xmlFile);
 
 
-        System.out.println("-------   JAXB  --------");
+        /*System.out.println("-------   JAXB  --------");
         /// Transformar les classes a xml amb JAXB amb la classe file.acces.MyJAXB
         jax = new MyJAXB();
         jax.generateXML(enciclopedia, xmlFile);
         jax.printFromXML(enciclopedia, xmlFile);
         enciclopedia.removeAllData();
         jax.generateObjectsFromXML(enciclopedia, xmlFile);
+*/
+
     }
 
 
