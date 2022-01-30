@@ -3,21 +3,23 @@ Projecte WebScraping:
 Explicació:
 El projecte consisteix a fer web scraping amb selenium web driver a una web que té una enciclopèdia de pebrots picants. La informació la gurdem en format csv amb la llibreria openCSV.
 D'altre banda un cop acabada la descarrega de dades de la web llegim el csv per a crear la nostra propia enciclopedia de pebrots convertint-los en objectes java.
-Per fer-ho abans acabarem de tractar lñes dades del csv ja que no ho hem fet abans i és necessari per a crear els pebrots.
+Per fer-ho abans acabarem de tractar les dades del csv ja que no ho hem fet abans i és necessari per a crear els pebrots.
 Tenim coses com: ("30 - 40 centimetros") i volem { int minValue=30; int maxValue=40;  String valueUnits="cm"}
-Quan comencem a formatejar les dades també entrem a dos webs tant per traduir com per agafar el codi de color en format Hex
-Per últim passem aquestes classes a xml amb l'ajuda de JAXB.
+Abans d'entrar a formatejar descarreguem una carta de colors per a poder treure els colors en hex.
+Per últim passem aquestes classes a xml amb DOM Parser i ho guardem a src/dades/pebrots.xml.
 
 _____________________________________________________________________________________________________
 
-Altres:
 
 
 
 
 
-FALTA:
 
-- solucionar l'entrada de camps inexistents com altura planta que no sempre apareix https://elholandespicante.com/plantas/chiles-y-ajies/aji-angelo/
 
-- XML començar a pensar-hi
+ERRORS:
+
+S'han solucionat molts dels errors derivats de la lectura de la web ja que hi ha variacions que s'han de tractar tenint en compte els 370 pebrots.
+Per tal de solucionar-ho s'han posat alguns parxes pero en qulsevol cas el programa no peta i com a molt retorna dades de refèrencia de l'error
+
+El JAXB no he aconseguit fer-lo funcionar doncs crec que l'estructura de dades s'ha de cambiar per els casos de dades dobles, dades inexistents i dades en format que XML no contempla.

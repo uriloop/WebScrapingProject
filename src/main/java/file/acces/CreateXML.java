@@ -47,6 +47,7 @@ public class CreateXML {
                 i++;
                 Element pebr = document.createElement("pebrot");
                 pebr.setAttribute("id",String.valueOf(i));
+                pebr.setAttribute("img", pebrot.getImg());
 
                 // creo els elements principals
                 Element info = document.createElement("informacio");
