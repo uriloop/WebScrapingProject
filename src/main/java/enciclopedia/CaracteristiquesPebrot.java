@@ -1,12 +1,18 @@
 package enciclopedia;
 
+import file.acces.Csv;
 import utils.FormatingPebrots;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import web.scraping.ScrapingClass;
 
+import java.io.File;
 import java.util.Arrays;
 
+/**
+ * Un grup d'informació que engloba característiques per cada pebrot tenim un grup de característiques
+ *
+ */
 @XmlRootElement
 public class CaracteristiquesPebrot {
 
@@ -18,10 +24,23 @@ public class CaracteristiquesPebrot {
     private int diesMinCultiu, diesMaxCultiu;
     FormatingPebrots format;
     ScrapingClass sc;
+    Csv csv;
 
+    /**
+     * El constructor de la classe rep varios parametres amb la informació del pebrot
+     *
+     * @param scoville  String Picant del pebrot. exmp: "100.000 hasta 200.000 scoville"
+     * @param anchoPlanta String exmppl: "40 - 50 cm"
+     * @param colorFlor String exmp: "blanco/amarillo"
+     * @param alturaPlanta String exmpl: "40 - 50 cm"
+     * @param rendimiento String exmpl: "Bueno"
+     * @param tiempoMinimoCosecha  String exmpl: 60 - 90 dias"
+     */
     public CaracteristiquesPebrot(String scoville, String anchoPlanta, String colorFlor, String alturaPlanta, String rendimiento, String tiempoMinimoCosecha) {
         format = new FormatingPebrots();
         sc = new ScrapingClass();
+        csv= new Csv(new File("src/dades/colorChart.csv"));
+
 
         int[] altura = format.getIntsFromStringWithNumberAndText(alturaPlanta);
         this.alturaPlantaMax = altura[1];
@@ -39,15 +58,21 @@ public class CaracteristiquesPebrot {
         String[] colors = format.setColorsOrColor(colorFlor);
         hexColors = new String[colors.length];
         for (int i = 0; i < hexColors.length; i++) {
-            hexColors[i] = sc.getHtmlColorFromName(sc.translateToEnglish(colors[i]));
+            hexColors[i] = csv.getHtmlColorFromCSVChart(colors[i]);
         }
 
         /// constructor revisat
     }
 
+    /**
+     * Constructor buit
+     */
     public CaracteristiquesPebrot() {
     }
 
+    /**
+     * @return retorna l'string amb les característiques ja tractades
+     */
     @Override
     public String toString() {
         return "\nenciclopedia.CaracteristiquesPebrot{" +
@@ -64,30 +89,51 @@ public class CaracteristiquesPebrot {
                 "\n}";
     }
 
+    /**getter de rendiment
+     * @return String rendimiento
+     */
     public String getRendimiento() {
         return rendimiento;
     }
 
+    /**getter dels colors en format hex
+     * @return String[] de colors html
+     */
     public String[] getHexColors() {
         return hexColors;
     }
 
+    /**getter scoville min
+     * @return int del min scoville
+     */
     public int getMinScoville() {
         return minScoville;
     }
 
+    /**getter de max scoville
+     * @return int max scoville
+     */
     public int getMaxScoville() {
         return maxScoville;
     }
 
+    /**getter de ancho planta maximo
+     * @return int ancho planta max
+     */
     public int getAnchoPlantaMax() {
         return anchoPlantaMax;
     }
 
+    /**getter del ancho planta minimo
+     * @return int ancho planta minimo
+     */
     public int getAnchoPlantaMin() {
         return anchoPlantaMin;
     }
 
+    /**getter
+     * @return int altura planta max
+     */
     public int getAlturaPlantaMax() {
         return alturaPlantaMax;
     }

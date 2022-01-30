@@ -8,42 +8,61 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Inici de la app i control de les principals  funcions
+ */
 public class Main {
 
 
     // En el main gestionarem tot el procés de llegir la informació de la web així com de passar a csv i més tard a xml
 
 
+    /**
+     * Fil principal d'execució de la app
+     *
+     * @param args No es tenen en compte
+     */
     public static void main(String[] args) {
 
 
         File csvFile = new File("src/dades/pebrotsOpen.csv");
         File xmlFile = new File("src/dades/pebrots.xml");
+        File colorChart = new File("src/dades/colorChart.csv");
         ScrapingClass sc = new ScrapingClass(csvFile);
         List<Pebrot> pebrots = new ArrayList<>();
         Csv csv = new Csv(csvFile);
         MyJAXB jax;
+
         /// Web scraping
 
         System.out.println("Start web scraping------------------");
 
         // Agafem totes les urls de posts de pebrots
-        //sc.getPimientosURL();
+        /*String[] urls=sc.getPimientosURL();
+        String[] urls2= new String[20];
+        for (int i = 0; i < 20; i++) {
+           urls2[i]= urls[i];
+        }
+*/
         // Agafem tota la info de cada post de pebrot
-        //sc.getPimientosInfo();
+        //sc.getPimientosInfo(urls2);
 
-        // agafem un pebrot en concret passant-li
+        // agafem un pebrot en concret passant-li la url (Probes)
         //sc.getPimientosInfo("https://elholandespicante.com/plantas/chiles-y-ajies/aji-angelo/");
 
-        // .... final web scraping o no..
+        // .... final web scraping
 
         // imprimim  la quantitat de pebrots al csv
         System.out.println("Total pebrots descarregats al csv: " + (csv.getNumGuardats() - 1));
 
 
+        // Descarreguem una taula de colors i noms d'una web a un fitxer csv ja que els traductors que utilitzava han petat //a vegades deixen de funcionar
+        //csv.writeColorChartToCSV(sc.getHtmlColorWebChart());
+        //System.out.println("final color chart scraping");
+
+
         // passem els pebrots del csv a objectes de la classe pebrot dins de la classe biblioteca de pebrots
-        // creem la llista de pebrots amb els new enciclopedia.Pebrot
-        // tornem a  per extreure el color en hex
+        // creem la llista de pebrots amb els new pebrots del csv
         for (int i = 1; i < csv.getNumGuardats(); i++) {
             pebrots.add(new Pebrot(csv.getLine(i)));
         }
@@ -52,15 +71,18 @@ public class Main {
         BibliotecaPebrots enciclopedia = new BibliotecaPebrots(pebrots);
         System.out.println("Total pebrots a la biblioteca: " + enciclopedia.getPebrotsList().size());
 
-        System.out.println("All \"Biblioteca\" To String = \n"+enciclopedia.toString());
+        System.out.println("All \"Biblioteca\" to String = \n" + enciclopedia);
 
 
+
+
+        System.out.println("-------   JAXB  --------");
         /// Transformar les classes a xml amb JAXB amb la classe file.acces.MyJAXB
-        jax=new MyJAXB();
-        jax.generateXML(enciclopedia,xmlFile);
-        jax.printFromXML(enciclopedia,xmlFile);
+        jax = new MyJAXB();
+        jax.generateXML(enciclopedia, xmlFile);
+        jax.printFromXML(enciclopedia, xmlFile);
         enciclopedia.removeAllData();
-        jax.generateObjectsFromXML(enciclopedia,xmlFile);
+        jax.generateObjectsFromXML(enciclopedia, xmlFile);
     }
 
 

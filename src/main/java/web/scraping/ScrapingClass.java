@@ -1,70 +1,90 @@
 package web.scraping;
 
-import enciclopedia.CaracteristiquesPebrot;
-
 import java.io.File;
 
 import file.acces.Csv;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
+/**
+ * Classe encarregada dels diferents web scrapings que fem sobre diferents webs per obtenir dades. Utilitza el webdriver selenium.
+ */
 public class ScrapingClass {
 
     File file;
     String[] pimientos;
 
+    /**constructor on s'especifica l'arxiu amb el que treballar
+     * @param file L'arxiu on volem guardar les dades
+     */
     public ScrapingClass(File file) {
         this.file = file;
     }
 
+    /**
+     * Constructor buit
+     */
     public ScrapingClass() {
 
     }
 
-    public String getHtmlColorFromName(String colorName) {
+    /** Comprova que la dada que li passem concorda amb la variable.
+     * @param camp el tipus de dada
+     * @param nomDades les dades amb el tipus de dada tot junt en un string
+     * @return retorna 1 si concorda, 0 i -1 si falla
+     */
+    private int comprobarConcordancia(String camp, String nomDades) {
+        try {
+            if (camp.toLowerCase(Locale.ROOT).equals(nomDades.split(":")[0].toLowerCase(Locale.ROOT))) return 1;
+            return 0;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return -1;
+        }
+    }
 
-        System.out.println(System.getenv("PATH"));
-        System.out.println(System.getenv("HOME"));
-
+    /** Fa scraping d'una taulaa de colors i la retorna en format List<String[]>
+     * @return  retorna una taula de colors amb noms i format html
+     */
+    public List<String[]> getHtmlColorWebChart() {
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         FirefoxOptions options = new FirefoxOptions();
         WebDriver driver = new FirefoxDriver(options);
 
-
         // Declarem la url de la web on descarregarem les dades. Posem el driver a treballar a la web que posem
 
-        driver.get("https://www.colorhexa.com/");
-        WebElement searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
-        driver.getCurrentUrl();
-        searchInput.sendKeys(colorName/*translateToEnglish(colorName)   Aixó ha d'anar encapsulat. No enllaçar els mètodes !!!!*/);
-        WebElement searchButton = driver.findElement(new By.ByXPath("//*[@id=\"search-submit\"]"));
-        searchButton.click();
-        driver.getCurrentUrl();
-        searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
-        String colorHtml = searchInput.getAttribute("value");
-        driver.close();
-        return colorHtml;
+        driver.get("https://www.disfrutalasmatematicas.com/numeros/hexadecimales-colores-nombres.html"); // aki posar la nova web.
+//        driver.switchTo().alert().accept();
+
+////////////////////////////
+        List<String[]> colorChart = new ArrayList<>();
+        List<WebElement> taula = driver.findElements(new By.ByXPath("/html/body/article/table/tbody//tr"));
+        for (WebElement element :
+                taula) {
+            List<WebElement> rowElements = element.findElements(new By.ByTagName("td"));
+            String[] colorRow = new String[3];
+            for (int i = 0; i < rowElements.size(); i++) {
+                colorRow[i] = rowElements.get(i).getText();
+            }
+            colorChart.add(colorRow);
+        }
+        return colorChart;
+
     }
 
-    public String translateToEnglish(String word) {
+    /**Traduir de castellà a anglés
+     * @param word paraula a traduir
+     * @return paraula traduida
+     */
+    public String translateToEnglishCambridge(String word) {
 
 
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
@@ -103,7 +123,11 @@ public class ScrapingClass {
         return word2;
     }
 
-    public String translateToEnglish4(String word) {
+    /** Traduir de castellà a anglés
+     * @param word paraula a traduir
+     * @return paraula traduida
+     */
+    public String translateToEnglish1(String word) {
 
 
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
@@ -118,7 +142,7 @@ public class ScrapingClass {
         driver.manage().deleteAllCookies();
 
 
-        if ((acceptButton = driver.findElement(new By.ByXPath("//*[@id=\"L2AGLb\"]"))).isDisplayed()){
+        if ((acceptButton = driver.findElement(new By.ByXPath("//*[@id=\"L2AGLb\"]"))).isDisplayed()) {
             acceptButton.click();
         }
         WebElement textArea = driver.findElement(new By.ByXPath("//*[@id=\"tw-source-text-ta\"]"));
@@ -132,7 +156,11 @@ public class ScrapingClass {
         return word2;
     }
 
-    public String translateToEnglish1(String word) {
+    /** Traduir de castellà a anglés
+     * @param word paraula a traduir
+     * @return paraula traduida
+     */
+    public String translateToEnglish(String word) {
 
 
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
@@ -172,7 +200,10 @@ public class ScrapingClass {
     }
 
 
-    public void getPimientosURL() {
+    /**Descarrega de la web el holandes picante, les urls dels pebrots que tenen a la enciclopedia de chiles picantes
+     * @return un array amb les urls dels pebrots que scrapegem de la web el holandes picante
+     */
+    public String[] getPimientosURL() {
 
         System.out.println(System.getenv("PATH"));
         System.out.println(System.getenv("HOME"));
@@ -208,13 +239,17 @@ public class ScrapingClass {
 
         driver.close();
 
+        return pimientos;
     }
 
-    public void getPimientosInfo() {
+    /** descarrega un seguit de pebrots, si volem descarregar un utilitzar el mateix metode pero passarli només un string
+     * @param urls Strings de les urls dels pebrots a buscar
+     */
+    public void getPimientosInfo(String[] urls) {
+
 
         for (String pimiento :
-                pimientos) {
-
+                urls) {
             getPimientosInfo(pimiento);
 
         }
@@ -223,6 +258,9 @@ public class ScrapingClass {
     }
 
 
+    /**Descrrega les dades d'un pebrot de la url corresponent
+     * @param s url del pebrot que volem descarregar les dades
+     */
     public void getPimientosInfo(String s) {
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         FirefoxOptions options = new FirefoxOptions();
@@ -277,7 +315,11 @@ public class ScrapingClass {
                 anchoPlanta = linies[i].split(":")[1];
             }
             if (comprobarConcordancia(familia, linies[i]) > 0) {
-                familia = linies[i].split(":")[1];
+                try {
+                    familia = linies[i].split(":")[1];
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    familia = "NotFound";
+                }
             }
             if (comprobarConcordancia(colorFlor, linies[i]) > 0) {
                 colorFlor = linies[i].split(":")[1];
@@ -339,12 +381,28 @@ public class ScrapingClass {
 
     }
 
-    private int comprobarConcordancia(String camp, String nomDades) {
-        try {
-            if (camp.toLowerCase(Locale.ROOT).equals(nomDades.split(":")[0].toLowerCase(Locale.ROOT))) return 1;
-            return 0;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return -1;
-        }
-    }
+    /*public String getHtmlColorFromName(String colorName) {
+
+        System.out.println(System.getenv("PATH"));
+        System.out.println(System.getenv("HOME"));
+
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
+        FirefoxOptions options = new FirefoxOptions();
+        WebDriver driver = new FirefoxDriver(options);
+
+
+        // Declarem la url de la web on descarregarem les dades. Posem el driver a treballar a la web que posem
+
+        driver.get("https://www.colorhexa.com/");
+        WebElement searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
+        driver.getCurrentUrl();
+        searchInput.sendKeys(colorName*//*translateToEnglish(colorName)   Aixó ha d'anar encapsulat. No enllaçar els mètodes !!!!*//*);
+        WebElement searchButton = driver.findElement(new By.ByXPath("//*[@id=\"search-submit\"]"));
+        searchButton.click();
+        driver.getCurrentUrl();
+        searchInput = driver.findElement(new By.ByXPath("//*[@id=\"search-input\"]"));
+        String colorHtml = searchInput.getAttribute("value");
+        driver.close();
+        return colorHtml;
+    }*/
 }

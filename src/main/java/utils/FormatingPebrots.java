@@ -58,18 +58,16 @@ public class FormatingPebrots {
             }
         }
 
-        if (hiHaSegon) {
-
             int[] scovilleNums = new int[2];
-            scovilleNums[0] = Integer.parseInt(num1);
-            scovilleNums[1] = Integer.parseInt(num2);
-            return scovilleNums;
-        } else {
-            int[] scovilleNums = new int[1];
-            scovilleNums[0] = Integer.parseInt(num1);
+            try{scovilleNums[0] = Integer.parseInt(num1);}catch (NumberFormatException e){
+                scovilleNums[0]= -100;
+            }
+            try{scovilleNums[1] = Integer.parseInt(num2);}catch (NumberFormatException e){
+                scovilleNums[1]= -100;
+            }
+
 
             return scovilleNums;
-        }
 
         // JA TIRA
 
@@ -173,7 +171,7 @@ public class FormatingPebrots {
         // Separar els digits del text i convertir-los a integer
         String num1 = "";
 
-
+        System.out.println(distanciaEntreSemillas);
         for (int i = 0; i < distanciaEntreSemillas.toCharArray().length; i++) {
             // si el caracter es un numero el guardem a la variable de retorn
 
