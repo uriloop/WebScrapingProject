@@ -23,7 +23,9 @@ public class ScrapingClass {
     File file;
     String[] pimientos;
 
-    /**constructor on s'especifica l'arxiu amb el que treballar
+    /**
+     * constructor on s'especifica l'arxiu amb el que treballar
+     *
      * @param file L'arxiu on volem guardar les dades
      */
     public ScrapingClass(File file) {
@@ -37,8 +39,10 @@ public class ScrapingClass {
 
     }
 
-    /** Comprova que la dada que li passem concorda amb la variable.
-     * @param camp el tipus de dada
+    /**
+     * Comprova que la dada que li passem concorda amb la variable.
+     *
+     * @param camp     el tipus de dada
      * @param nomDades les dades amb el tipus de dada tot junt en un string
      * @return retorna 1 si concorda, 0 i -1 si falla
      */
@@ -51,8 +55,10 @@ public class ScrapingClass {
         }
     }
 
-    /** Fa scraping d'una taulaa de colors i la retorna en format List<String[]>
-     * @return  retorna una taula de colors amb noms i format html
+    /**
+     * Fa scraping d'una taulaa de colors i la retorna en format List<String[]>
+     *
+     * @return retorna una taula de colors amb noms i format html
      */
     public List<String[]> getHtmlColorWebChart() {
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
@@ -80,7 +86,9 @@ public class ScrapingClass {
 
     }
 
-    /**Traduir de castellà a anglés
+    /**
+     * Traduir de castellà a anglés
+     *
      * @param word paraula a traduir
      * @return paraula traduida
      */
@@ -123,7 +131,9 @@ public class ScrapingClass {
         return word2;
     }
 
-    /** Traduir de castellà a anglés
+    /**
+     * Traduir de castellà a anglés
+     *
      * @param word paraula a traduir
      * @return paraula traduida
      */
@@ -156,7 +166,9 @@ public class ScrapingClass {
         return word2;
     }
 
-    /** Traduir de castellà a anglés
+    /**
+     * Traduir de castellà a anglés
+     *
      * @param word paraula a traduir
      * @return paraula traduida
      */
@@ -200,7 +212,9 @@ public class ScrapingClass {
     }
 
 
-    /**Descarrega de la web el holandes picante, les urls dels pebrots que tenen a la enciclopedia de chiles picantes
+    /**
+     * Descarrega de la web el holandes picante, les urls dels pebrots que tenen a la enciclopedia de chiles picantes
+     *
      * @return un array amb les urls dels pebrots que scrapegem de la web el holandes picante
      */
     public String[] getPimientosURL() {
@@ -210,6 +224,8 @@ public class ScrapingClass {
 
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(true);
+
         WebDriver driver = new FirefoxDriver(options);
 
 
@@ -242,29 +258,35 @@ public class ScrapingClass {
         return pimientos;
     }
 
-    /** descarrega un seguit de pebrots, si volem descarregar un utilitzar el mateix metode pero passarli només un string
+    /**
+     * descarrega un seguit de pebrots, si volem descarregar un utilitzar el mateix metode pero passarli només un string
+     *
      * @param urls Strings de les urls dels pebrots a buscar
      */
     public void getPimientosInfo(String[] urls) {
-
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(true);
+        WebDriver driver = new FirefoxDriver(options);
 
         for (String pimiento :
                 urls) {
-            getPimientosInfo(pimiento);
+            getPimientosInfo(pimiento, driver);
 
         }
-
+        driver.close();
 
     }
 
 
-    /**Descrrega les dades d'un pebrot de la url corresponent
+    /**
+     * Descrrega les dades d'un pebrot de la url corresponent
+     *
      * @param s url del pebrot que volem descarregar les dades
      */
-    public void getPimientosInfo(String s) {
-        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
-        FirefoxOptions options = new FirefoxOptions();
-        WebDriver driver = new FirefoxDriver(options);
+    public void getPimientosInfo(String s,
+                                 WebDriver driver) {
+
         String nombre, img, description = "", origen = "Origen", distanciaEntrePlantas = "Distancia entre plantas", distanciaEntreSemillas = "Distancia entre semillas", scoville = "Scoville", anchoPlanta = "Ancho de la planta", familia = "Familia", colorFlor = "Color de la flor",
                 tempCrecimiento = "Temperatura para crecer", luz = "Luz", alturaPlanta = "Altura de la planta", rendimiento = "Rendimiento", tiempoMinimoCosecha = "Tiempo mínimo para la cosecha", profSemilla = "Profundidad para sembrar", tempGerminacion = "Temperatura para la germinación";
         // anem a cadascuna de les paginesde pimientos   fer amb forkJoins?
@@ -376,7 +398,7 @@ public class ScrapingClass {
         System.out.println("--------------------------");
         System.out.println("--> variables guardadas de " + nombre + "  --  " + driver.getCurrentUrl());
         System.out.println("--------------------------");
-        driver.close();
+
 
 
     }

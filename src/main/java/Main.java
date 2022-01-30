@@ -3,6 +3,9 @@ import enciclopedia.Pebrot;
 import file.acces.CreateXML;
 import file.acces.Csv;
 import file.acces.MyJAXB;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import web.scraping.ScrapingClass;
 
 import java.io.File;
@@ -45,7 +48,8 @@ public class Main {
         sc.getPimientosInfo(urls);
 
         // agafem un pebrot en concret passant-li la url (per fer proves)
-        //sc.getPimientosInfo("https://elholandespicante.com/plantas/chiles-y-ajies/aji-angelo/");
+        //System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");FirefoxOptions options = new FirefoxOptions();WebDriver driver = new FirefoxDriver(options);
+        //sc.getPimientosInfo("https://elholandespicante.com/plantas/chiles-y-ajies/aji-angelo/",driver);
 
         // .... final web scraping
 
