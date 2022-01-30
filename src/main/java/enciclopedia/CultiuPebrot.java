@@ -4,6 +4,9 @@ import utils.FormatingPebrots;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Classe amb les dades que es refereixen al cultiu de un pebrot.
+ */
 @XmlRootElement
 public class CultiuPebrot {
 
@@ -15,6 +18,15 @@ public class CultiuPebrot {
 
     FormatingPebrots format= new FormatingPebrots();
 
+    /**
+     * constructor amb totes les dades del cultiu passades per parametre
+     * @param profSemilla String amb la profunditat a la que plantar la llavor
+     * @param distanciaEntrePlantas String amb la distancia max i min entre pllantes
+     * @param distanciaEntreSemillas String amb la distancia max i min entre llavors
+     * @param tempCrecimiento String amb les temperatures optimes pel creixement
+     * @param luz String amb la llum que requereix
+     * @param tempGerminacion String amb les temperatures optimes per germinar
+     */
     public CultiuPebrot(String profSemilla,String distanciaEntrePlantas, String distanciaEntreSemillas,  String tempCrecimiento, String luz, String tempGerminacion) {
 
         this.luz=luz;
@@ -34,9 +46,15 @@ public class CultiuPebrot {
         // revisat
     }
 
+    /**
+     * constructor buit
+     */
     public CultiuPebrot() {
     }
 
+    /**metode to string sobreescrit
+     * @return string amb totes les dades de cultiu del pebrot
+     */
     @Override
     public String toString() {
         return "\nenciclopedia.CultiuPebrot{\n" +

@@ -25,7 +25,9 @@ public class BibliotecaPebrots {
     }
 
 
-
+    /**
+     * Constructor buit
+     */
     public BibliotecaPebrots() {
     }
 

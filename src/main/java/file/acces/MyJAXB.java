@@ -9,19 +9,33 @@ import jakarta.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class MyJAXB {
 
     private BibliotecaPebrots biblioteca;
 
+    /**
+     * Classe encarregada de escriure i llegir arxius XML
+     */
     public MyJAXB() {
     }
 
+    /**genera un arxiu xml a partir de la classe BibliotecaPebrots
+     * @param enciclopedia la biblioteca de pebrots a introduir
+     * @param file l'arxiu on treballar
+     */
     public void generateXML(BibliotecaPebrots enciclopedia, File file) {
         biblioteca = enciclopedia;
-
+        if(!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(BibliotecaPebrots.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(biblioteca.getClass());
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -36,6 +50,10 @@ public class MyJAXB {
 
     }
 
+    /**Carrega la classe biblioteca pebrots a partir d'un arxiu xml
+     * @param enciclopedia l'objecte biblioteca a carregar
+     * @param file l'arxiu d'on extreyure les dades
+     */
     public void generateObjectsFromXML(BibliotecaPebrots enciclopedia, File file) {
         biblioteca=enciclopedia;
         try {
@@ -50,6 +68,11 @@ public class MyJAXB {
 
 
     }
+
+    /**Imprimeix per pantalla l'xml
+     * @param enciclopedia La classe on carregar els objectes
+     * @param file l'arxiu on es troba l'xml
+     */
     public void printFromXML(BibliotecaPebrots enciclopedia,File file) {
         biblioteca=enciclopedia;
         try {

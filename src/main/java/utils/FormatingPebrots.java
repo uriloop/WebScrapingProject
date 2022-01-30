@@ -3,9 +3,16 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * S'encarrega de formatejar les dades que recopilem dels pebrots per a poder crear els pebrots amb dades amb sentit
+ */
 public class FormatingPebrots {
 
 
+    /**Retorna dos ints amb un valor max i un valor min tot treient el text que hi pugui haber
+     * @param alturaPlanta l'String a convertir exm: "40 - 50 cm"
+     * @return retorna dos valors en format int[]  exm: {40 - 50}
+     */
     public int[] getIntsFromStringWithNumberAndText(String alturaPlanta) {
         String num1 = "";
         String num2 = "";
@@ -41,6 +48,10 @@ public class FormatingPebrots {
         return ints;
     }   // falla amb el cas que estigui buit
 
+    /** formateja les dades del grau d'scoville per a que mostri dos integers del max i min o si només hi ha una dada retorna -100 a l'altre dada
+     * @param scoville string que hem de transformar. exm: "entre 100.000 ~ 120.000 sc"
+     * @return dos integers en format int[]  exm: {100000,120000}
+     */
     public int[] setMaxAndMinScoville(String scoville) {
         String num1 = "";
         String num2 = "";
@@ -74,6 +85,10 @@ public class FormatingPebrots {
 
     }   // fet
 
+    /**formateja les dades de la familia del pebrot
+     * @param familia string on podem trobar la familia i més caracters que es treuen. exm: "C. annum"
+     * @return un string amb la familia només  exm: "annum"
+     */
     public String familyFilter(String familia) {    // fet
         String[] noms = familia.split(" ");
         if (noms.length == 1) return noms[0];
@@ -82,6 +97,10 @@ public class FormatingPebrots {
 
     }   // fet
 
+    /** formateja el temps max min de collita
+     * @param tiempoMinimoCosecha un string mb coses tipu "De 60 a 70 dias"
+     * @return dos integerrs en format int[] exm: {60,70}
+     */
     public int[] setMaxAndMinHarvestTime(String tiempoMinimoCosecha) {   // fet
 
 
@@ -116,6 +135,10 @@ public class FormatingPebrots {
         return temps;
     }   /// fet
 
+    /**formateja les dades dels colors
+     * @param colorFlor un string amb un o varios colors exm: "amarillo/blanco"
+     * @return retorna un array d'string amb els diferents colors per separat   exm: {"amarillo","blanco"}
+     */
     public String[] setColorsOrColor(String colorFlor) {
 
         String[] colors = new String[2];
@@ -142,7 +165,7 @@ public class FormatingPebrots {
     }  /// fet
 
 
-    public int[] setMaxMinValuesFromAnchoPlanta(String anchoPlanta) {    // Fet
+   /* public int[] setMaxMinValuesFromAnchoPlanta(String anchoPlanta) {    // Fet
 
         String num1 = "";
         String num2 = "";
@@ -165,13 +188,16 @@ public class FormatingPebrots {
         ample[0] = Integer.parseInt(num2);
         ample[1] = Integer.parseInt(num1);
         return ample;
-    }   // fet
+    }   // fet*/
 
+    /**formateja les dades per obtenir un sol int
+     * @param distanciaEntreSemillas un string tipus exm: "40 cm"
+     * @return un integer  exm: 40
+     */
     public int getIntFromStringWithText(String distanciaEntreSemillas) {
         // Separar els digits del text i convertir-los a integer
         String num1 = "";
 
-        System.out.println(distanciaEntreSemillas);
         for (int i = 0; i < distanciaEntreSemillas.toCharArray().length; i++) {
             // si el caracter es un numero el guardem a la variable de retorn
 
@@ -182,11 +208,19 @@ public class FormatingPebrots {
         return Integer.parseInt(num1);
     }   // fet
 
+    /**formateja les dades sobre l'origen.
+     * @param origen  un string a formatejar  exm: "trinidad/chile"
+     * @return un array de integers amb els difechile"}
+     */
     public String[] getValuesFromOrigen(String origen) {
 
         return origen.split("/");
     }   // fet
 
+    /**formateja les ddes per obtenir un float d'un String
+     * @param valor String a formatejar.   exm: "20.50 cm"
+     * @return  un float amb el valor.   exm: 20.5f
+     */
     public float getFloatFromStringWithText(String valor) {
 
         // s'ha de revisar !!!!    quan agafem els decimals s'haurà de comprovar quants decimals tenim i dividir-ho per :  1 digit= 10, 2 digits= 100 .....

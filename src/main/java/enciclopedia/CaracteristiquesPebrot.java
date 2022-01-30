@@ -138,14 +138,23 @@ public class CaracteristiquesPebrot {
         return alturaPlantaMax;
     }
 
+    /** getter
+     * @return int altura planta min
+     */
     public int getAlturaPlantaMin() {
         return alturaPlantaMin;
     }
 
+    /**getter dies cultiu min
+     * @return int dies cultiu min
+     */
     public int getDiesMinCultiu() {
         return diesMinCultiu;
     }
 
+    /**getter dies cultiu max
+     * @return int dies cultiu max
+     */
     public int getDiesMaxCultiu() {
         return diesMaxCultiu;
     }
@@ -153,42 +162,81 @@ public class CaracteristiquesPebrot {
     // setters
 
 
+    /** Setter preparat per a JAXB
+     * @param rendimiento String amb el rendiment
+     */
     @XmlElement
     public void setRendimiento(String rendimiento) {
         this.rendimiento = rendimiento;
     }
+
+    /**Setter preparat per a JAXB
+     * @param hexColors String[] amb els color hex
+     */
     @XmlElement
     public void setHexColors(String[] hexColors) {
         this.hexColors = hexColors;
     }
+
+    /**Setter preparat per a JAXB
+     * @param minScoville int scoville min
+     */
     @XmlElement
     public void setMinScoville(int minScoville) {
         this.minScoville = minScoville;
     }
+
+    /**Setter preparat per a JAXB
+     * @param maxScoville int scoville max
+     */
     @XmlElement
     public void setMaxScoville(int maxScoville) {
         this.maxScoville = maxScoville;
     }
+
+    /**Setter preparat per a JAXB
+     * @param anchoPlantaMax int ample max planta
+     */
     @XmlElement
     public void setAnchoPlantaMax(int anchoPlantaMax) {
         this.anchoPlantaMax = anchoPlantaMax;
     }
+
+    /**Setter preparat per a JAXB
+     * @param anchoPlantaMin int ample min planta
+     */
     @XmlElement
     public void setAnchoPlantaMin(int anchoPlantaMin) {
         this.anchoPlantaMin = anchoPlantaMin;
     }
+
+    /**Setter preparat per a JAXB
+     * @param alturaPlantaMax int altura max planta
+     */
     @XmlElement
     public void setAlturaPlantaMax(int alturaPlantaMax) {
         this.alturaPlantaMax = alturaPlantaMax;
     }
+
+    /**Setter preparat per a JAXB
+     * @param alturaPlantaMin int altura min planta
+     */
     @XmlElement
     public void setAlturaPlantaMin(int alturaPlantaMin) {
         this.alturaPlantaMin = alturaPlantaMin;
     }
+
+    /**Setter preparat per a JAXB
+     * @param diesMinCultiu int dies min pel cultiu
+     */
     @XmlElement
     public void setDiesMinCultiu(int diesMinCultiu) {
         this.diesMinCultiu = diesMinCultiu;
     }
+
+    /**Setter preparat per a JAXB
+     * @param diesMaxCultiu   int dies max pel cutiu
+     */
     @XmlElement
     public void setDiesMaxCultiu(int diesMaxCultiu) {
         this.diesMaxCultiu = diesMaxCultiu;

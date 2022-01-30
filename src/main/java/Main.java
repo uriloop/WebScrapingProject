@@ -71,7 +71,7 @@ public class Main {
         BibliotecaPebrots enciclopedia = new BibliotecaPebrots(pebrots);
         System.out.println("Total pebrots a la biblioteca: " + enciclopedia.getPebrotsList().size());
 
-        System.out.println("All \"Biblioteca\" to String = \n" + enciclopedia);
+        //System.out.println("All \"Biblioteca\" to String = \n" + enciclopedia);
 
 
 
