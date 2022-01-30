@@ -39,16 +39,12 @@ public class Main {
         System.out.println("Start web scraping------------------");
 
         // Agafem totes les urls de posts de pebrots
-        /*String[] urls=sc.getPimientosURL();
-        String[] urls2= new String[20];
-        for (int i = 0; i < 20; i++) {
-           urls2[i]= urls[i];
-        }
-*/
-        // Agafem tota la info de cada post de pebrot
-        //sc.getPimientosInfo(urls2);
+        String[] urls=sc.getPimientosURL();
 
-        // agafem un pebrot en concret passant-li la url (Probes)
+        // Agafem tota la info de cada post de pebrot
+        sc.getPimientosInfo(urls);
+
+        // agafem un pebrot en concret passant-li la url (per fer proves)
         //sc.getPimientosInfo("https://elholandespicante.com/plantas/chiles-y-ajies/aji-angelo/");
 
         // .... final web scraping
@@ -58,8 +54,8 @@ public class Main {
 
 
         // Descarreguem una taula de colors i noms d'una web a un fitxer csv ja que els traductors que utilitzava han petat //a vegades deixen de funcionar
-        //csv.writeColorChartToCSV(sc.getHtmlColorWebChart());
-        //System.out.println("final color chart scraping");
+        csv.writeColorChartToCSV(sc.getHtmlColorWebChart());
+        System.out.println("final color chart scraping");
 
 
         // passem els pebrots del csv a objectes de la classe pebrot dins de la classe biblioteca de pebrots
@@ -72,11 +68,10 @@ public class Main {
         BibliotecaPebrots enciclopedia = new BibliotecaPebrots(pebrots);
         System.out.println("Total pebrots a la biblioteca: " + enciclopedia.getPebrotsList().size());
 
-        //System.out.println("All \"Biblioteca\" to String = \n" + enciclopedia);
-
+        //System.out.println("All \"Biblioteca\" to String = \n" + enciclopedia);  // per si volem imprimir-la
 
         CreateXML createXML= new CreateXML();
-        createXML.write(enciclopedia,xmlFile);
+        createXML.write(enciclopedia,xmlFile); // també imprimeix el resultat per pantalla
 
 
         /*System.out.println("-------   JAXB  --------");
