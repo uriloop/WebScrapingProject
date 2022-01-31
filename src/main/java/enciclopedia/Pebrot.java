@@ -25,23 +25,23 @@ public class Pebrot {
     private InfoPebrot infoPebrot;
 
     /**Constructor amb tots els parametres per construir-lo
-     * @param nombre
-     * @param description
-     * @param origen
-     * @param distanciaEntrePlantas
-     * @param distanciaEntreSemillas
-     * @param scoville
-     * @param anchoPlanta
-     * @param familia
-     * @param colorFlor
-     * @param tempCrecimiento
-     * @param luz
-     * @param alturaPlanta
-     * @param rendimiento
-     * @param tiempoMinimoCosecha
-     * @param profSemilla
-     * @param tempGerminacion
-     * @param img
+     * @param nombre parametre
+     * @param description parametre
+     * @param origen parametre
+     * @param distanciaEntrePlantas parametre
+     * @param distanciaEntreSemillas parametre
+     * @param scoville parametre
+     * @param anchoPlanta parametre
+     * @param familia parametre
+     * @param colorFlor parametre
+     * @param tempCrecimiento parametre
+     * @param luz parametre
+     * @param alturaPlanta parametre
+     * @param rendimiento parametre
+     * @param tiempoMinimoCosecha parametre
+     * @param profSemilla parametre
+     * @param tempGerminacion parametre
+     * @param img parametre
      */
     public Pebrot(String nombre, String description, String origen, String distanciaEntrePlantas, String distanciaEntreSemillas, String scoville, String anchoPlanta, String familia, String colorFlor, String tempCrecimiento, String luz, String alturaPlanta, String rendimiento, String tiempoMinimoCosecha, String profSemilla, String tempGerminacion, String img) {
         this.nombre=nombre;

@@ -11,6 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Classe encaarregada de llegir i escriure amb JAXB
+ */
 public class MyJAXB {
 
     private BibliotecaPebrots biblioteca;

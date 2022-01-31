@@ -92,7 +92,7 @@ public class Csv {
     }
 
     /**Guarda una taula de dades en format csv
-     * @param taula La taula a guardar en format List<String[]> a l'arxiu de la classe preparat per aquesta funció
+     * @param taula La taula a guardar en format List de String[] a l'arxiu de la classe preparat per aquesta funció
      */
     // guarda la taula de colors
     public void writeColorChartToCSV(List<String[]> taula) {
@@ -158,6 +158,10 @@ public class Csv {
     }
 
 
+    /**retorna el color en html
+     * @param color color a buscar
+     * @return el color en format string
+     */
     public String getHtmlColorFromCSVChart(String color) {
 
         String[] line = new String[3];

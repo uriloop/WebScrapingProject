@@ -56,7 +56,7 @@ public class ScrapingClass {
     }
 
     /**
-     * Fa scraping d'una taulaa de colors i la retorna en format List<String[]>
+     * Fa scraping d'una taulaa de colors i la retorna en format "List de String[]
      *
      * @return retorna una taula de colors amb noms i format html
      */
@@ -285,6 +285,7 @@ public class ScrapingClass {
      * Descrrega les dades d'un pebrot de la url corresponent
      *
      * @param s url del pebrot que volem descarregar les dades
+     * @param  driver  el driver para seguir navegando
      */
     public void getPimientosInfo(String s,
                                  WebDriver driver) {

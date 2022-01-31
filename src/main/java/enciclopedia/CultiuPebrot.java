@@ -69,68 +69,123 @@ public class CultiuPebrot {
                 "\n}";
     }
 
+    /**getter de datos
+     * @return prof semilla
+     */
     public float getProfSemilla() {
         return profSemilla;
     }
 
+    /**getter de datos
+     * @return dist plantes
+     */
     public int getDistanciaEntrePlantes() {
         return distanciaEntrePlantes;
     }
 
+    /**getter de datos
+     * @return temp creixement
+     */
     public int getTempCrecimientoMax() {
         return tempCrecimientoMax;
     }
 
+    /**getter de datos
+     * @return  temp creixement
+     */
     public int getTempCrecimientoMin() {
         return tempCrecimientoMin;
     }
 
+    /**getter de datos
+     * @return temp germinacio
+     */
     public int getTempGerminacionMin() {
         return tempGerminacionMin;
     }
 
+    /**getter de datos
+     * @return temp germinacio
+     */
     public int getTempGerminacionMax() {
         return tempGerminacionMax;
     }
 
+    /**getter de datos
+     * @return dist semillas
+     */
     public int getDistanciaEntreSemillas() {
         return distanciaEntreSemillas;
     }
 
+    /**getter de datos
+     * @return luz
+     */
     public String getLuz() {
         return luz;
     }
 
     /// Setters
 
+    /**setter para el JAXB
+     * @param profSemilla parametre
+     */
     @XmlElement
     public void setProfSemilla(float profSemilla) {
         this.profSemilla = profSemilla;
     }
+
+    /**setter para el JAXB
+     * @param distanciaEntrePlantes parametre
+     */
     @XmlElement
     public void setDistanciaEntrePlantes(int distanciaEntrePlantes) {
         this.distanciaEntrePlantes = distanciaEntrePlantes;
     }
+
+    /**setter para el JAXB
+     * @param tempCrecimientoMax  parametre
+     */
     @XmlElement
     public void setTempCrecimientoMax(int tempCrecimientoMax) {
         this.tempCrecimientoMax = tempCrecimientoMax;
     }
+
+    /**setter para el JAXB
+     * @param tempCrecimientoMin parametre
+     */
     @XmlElement
     public void setTempCrecimientoMin(int tempCrecimientoMin) {
         this.tempCrecimientoMin = tempCrecimientoMin;
     }
+
+    /**setter para el JAXB
+     * @param tempGerminacionMin parametre
+     */
     @XmlElement
     public void setTempGerminacionMin(int tempGerminacionMin) {
         this.tempGerminacionMin = tempGerminacionMin;
     }
+
+    /**setter para el JAXB
+     * @param tempGerminacionMax parametre
+     */
     @XmlElement
     public void setTempGerminacionMax(int tempGerminacionMax) {
         this.tempGerminacionMax = tempGerminacionMax;
     }
+
+    /**setter para el JAXB
+     * @param distanciaEntreSemillas parametre
+     */
     @XmlElement
     public void setDistanciaEntreSemillas(int distanciaEntreSemillas) {
         this.distanciaEntreSemillas = distanciaEntreSemillas;
     }
+
+    /**setter para el JAXB
+     * @param luz parametre
+     */
     @XmlElement
     public void setLuz(String luz) {
         this.luz = luz;
