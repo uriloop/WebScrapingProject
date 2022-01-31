@@ -43,7 +43,7 @@ public class BibliotecaPebrots {
     /**Rep per pàrametre una llista de pebrots per construir una nova llista de pebrots carregant-la desde l'XML
      * @param pebrotsList   La llista que rep de l'XML
      */
-    @XmlElement
+    @XmlElement(name="pebrot")
     public void setPebrotsList(List<Pebrot> pebrotsList) {
         this.pebrotsList = pebrotsList;
     }

@@ -31,6 +31,7 @@ public class Main {
 
         File csvFile = new File("src/dades/pebrotsOpen.csv");
         File xmlFile = new File("src/dades/pebrots.xml");
+        File xmlFile2 = new File("src/dades/pebrotsJAXB.xml");
         File colorChart = new File("src/dades/colorChart.csv");
         ScrapingClass sc = new ScrapingClass(csvFile);
         List<Pebrot> pebrots = new ArrayList<>();
@@ -74,18 +75,17 @@ public class Main {
 
         //System.out.println("All \"Biblioteca\" to String = \n" + enciclopedia);  // per si volem imprimir-la
 
+        System.out.println("--------   DOM   ---------");
+
         CreateXML createXML= new CreateXML();
         createXML.write(enciclopedia,xmlFile); // també imprimeix el resultat per pantalla
 
-
-        /*System.out.println("-------   JAXB  --------");
+        System.out.println("-------   JAXB  --------");
         /// Transformar les classes a xml amb JAXB amb la classe file.acces.MyJAXB
         jax = new MyJAXB();
-        jax.generateXML(enciclopedia, xmlFile);
-        jax.printFromXML(enciclopedia, xmlFile);
+        jax.generateXML(enciclopedia, xmlFile2);
         enciclopedia.removeAllData();
-        jax.generateObjectsFromXML(enciclopedia, xmlFile);
-*/
+
 
     }
 

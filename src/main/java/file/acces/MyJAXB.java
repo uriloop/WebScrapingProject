@@ -24,11 +24,13 @@ public class MyJAXB {
     public MyJAXB() {
     }
 
+    File file;
     /**genera un arxiu xml a partir de la classe BibliotecaPebrots
      * @param enciclopedia la biblioteca de pebrots a introduir
      * @param file l'arxiu on treballar
      */
     public void generateXML(BibliotecaPebrots enciclopedia, File file) {
+        this.file= file;
         biblioteca = enciclopedia;
         if(!file.exists()) {
             try {
@@ -38,12 +40,12 @@ public class MyJAXB {
             }
         }
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(biblioteca.getClass());
+            JAXBContext jaxbContext = JAXBContext.newInstance(BibliotecaPebrots.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            jaxbMarshaller.marshal(biblioteca, new File("src/dades/pebrotsXML.xml"));
+            jaxbMarshaller.marshal(biblioteca,file);
             jaxbMarshaller.marshal(biblioteca, System.out);
 
         } catch (JAXBException e) {
@@ -52,11 +54,11 @@ public class MyJAXB {
 
 
     }
-
-    /**Carrega la classe biblioteca pebrots a partir d'un arxiu xml
+/*
+    *//**Carrega la classe biblioteca pebrots a partir d'un arxiu xml
      * @param enciclopedia l'objecte biblioteca a carregar
      * @param file l'arxiu d'on extreyure les dades
-     */
+     *//*
     public void generateObjectsFromXML(BibliotecaPebrots enciclopedia, File file) {
         biblioteca=enciclopedia;
         try {
@@ -70,12 +72,12 @@ public class MyJAXB {
         }
 
 
-    }
+    }*/
 
-    /**Imprimeix per pantalla l'xml
+   /* *//**Imprimeix per pantalla l'xml
      * @param enciclopedia La classe on carregar els objectes
      * @param file l'arxiu on es troba l'xml
-     */
+     *//*
     public void printFromXML(BibliotecaPebrots enciclopedia,File file) {
         biblioteca=enciclopedia;
         try {
@@ -90,5 +92,5 @@ public class MyJAXB {
         }
 
 
-    }
+    }*/
 }
