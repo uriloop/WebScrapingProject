@@ -63,6 +63,7 @@ public class ScrapingClass {
     public List<String[]> getHtmlColorWebChart() {
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(true);
         WebDriver driver = new FirefoxDriver(options);
 
         // Declarem la url de la web on descarregarem les dades. Posem el driver a treballar a la web que posem
@@ -82,6 +83,7 @@ public class ScrapingClass {
             }
             colorChart.add(colorRow);
         }
+        driver.close();
         return colorChart;
 
     }
