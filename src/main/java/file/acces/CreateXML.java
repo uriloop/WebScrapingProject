@@ -151,7 +151,6 @@ public class CreateXML {
                 cultiu.appendChild(dato);
                 dato= document.createElement("llum");
                 dato.setTextContent(String.valueOf(pebrot.getCultiuPebrot().getLuz()));
-                dato.setAttribute("mesura","cm");
                 cultiu.appendChild(dato);
 
                 dato = document.createElement("tempGerminacio");
