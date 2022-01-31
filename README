@@ -10,16 +10,17 @@ Per últim passem aquestes classes a xml amb DOM Parser i ho guardem a src/dades
 
 _____________________________________________________________________________________________________
 
+diagrama:
+https://drive.google.com/file/d/1ohkIPwSEAcrgB8steGOJuRwUzfH4znOM/view?usp=sharing
+
+javadoc:
+https://drive.google.com/drive/folders/1aDjGFezMckYubBZZu_DCnQsE8ArwCqYN?usp=sharing
 
 
 
-
-
-
-
-ERRORS:
+ERRORS a corretgir:
 
 S'han solucionat molts dels errors derivats de la lectura de la web ja que hi ha variacions que s'han de tractar tenint en compte els 370 pebrots.
-Per tal de solucionar-ho s'han posat alguns parxes pero en qulsevol cas el programa no peta i com a molt retorna dades de refèrencia de l'error
+Per tal de solucionar-ho s'han posat alguns parxes pero en qualsevol cas el programa no peta i com a molt retorna dades de refèrencia de l'error
 
 El JAXB no he aconseguit fer-lo funcionar doncs crec que l'estructura de dades s'ha de cambiar per els casos de dades dobles, dades inexistents i dades en format que XML no contempla.
